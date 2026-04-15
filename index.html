@@ -1,0 +1,870 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Office | Coworking Space Solutions</title>
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <style>
+        /* =========================================
+           1. CSS VARIABLES & RESET
+           ========================================= */
+        :root {
+            --brand-orange: #F26522;
+            --brand-orange-hover: #d9581b;
+            --brand-dark: #23252A;
+            --brand-light-bg: #F9F9FB;
+            --text-dark: #222222;
+            --text-gray: #666666;
+            --text-light-gray: #888888;
+            --badge-bg: #FEF0EA;
+            --container-width: 1200px;
+            --font-stack: 'Montserrat', sans-serif;
+            --radius-md: 8px;
+            --radius-lg: 12px;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-stack);
+            color: var(--text-dark);
+            line-height: 1.6;
+            background-color: #ffffff;
+            -webkit-font-smoothing: antialiased;
+            overflow-x: hidden; /* Prevents horizontal scroll bugs */
+        }
+
+        img { max-width: 100%; display: block; }
+        a { text-decoration: none; color: inherit; transition: var(--transition); }
+        ul { list-style: none; }
+
+        /* =========================================
+           2. TYPOGRAPHY & UTILITIES
+           ========================================= */
+        h1, h2, h3, h4 { line-height: 1.2; font-weight: 700; color: var(--text-dark); }
+        h1 { font-size: 3.2rem; letter-spacing: -1px; }
+        h2 { font-size: 2.2rem; margin-bottom: 1rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        h4 { font-size: 1.1rem; margin-bottom: 0.5rem; }
+        
+        .text-orange { color: var(--brand-orange); }
+        .text-white { color: #ffffff; }
+        .text-center { text-align: center; }
+        .text-left { text-align: left; }
+        .subtitle { color: var(--brand-orange); font-size: 0.75rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 1rem; display: block; }
+        .container { width: 100%; max-width: var(--container-width); margin: 0 auto; padding: 0 20px; }
+        .section { padding: 5rem 0; }
+        .bg-light { background-color: var(--brand-light-bg); }
+        .bg-dark { background-color: var(--brand-dark); }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 24px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            border: none;
+            transition: var(--transition);
+            text-align: center;
+        }
+        .btn-orange { background-color: var(--brand-orange); color: #ffffff; }
+        .btn-orange:hover { background-color: var(--brand-orange-hover); }
+        .btn-white { background-color: #ffffff; color: var(--brand-orange); }
+        .btn-white:hover { background-color: #f1f1f1; }
+
+        /* =========================================
+           3. HEADER & NAV (Solid White)
+           ========================================= */
+        .navbar {
+            background-color: #ffffff;
+            padding: 1.2rem 0;
+            border-bottom: 1px solid #eaeaea;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            width: 100%;
+        }
+        .nav-inner { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-size: 1.4rem; font-weight: 800; color: #000; }
+        .logo span { color: var(--brand-orange); font-weight: 500; }
+        .nav-links { display: flex; gap: 2.5rem; }
+        .nav-links a { font-size: 0.85rem; font-weight: 600; color: #444; }
+        .nav-links a:hover { color: var(--brand-orange); }
+
+        /* =========================================
+           4. HERO SECTION (Strictly Left-Aligned)
+           ========================================= */
+        .hero {
+            position: relative;
+            padding: 6rem 0;
+            min-height: 580px;
+            display: flex;
+            align-items: center;
+            background: url('https://images.unsplash.com/photo-1497366216548-37526070297c?ixlib=rb-4.0.3&auto=format&fit=crop&w=1920&q=80') center/cover no-repeat;
+        }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(90deg, rgba(20,20,20,0.95) 0%, rgba(20,20,20,0.8) 40%, rgba(20,20,20,0.3) 100%);
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 650px;
+            text-align: left;
+        }
+        .hero-content .subtitle { text-align: left; }
+        .hero h1 { color: #ffffff; margin-bottom: 1.2rem; line-height: 1.1; text-align: left; }
+        .hero p { color: #e0e0e0; font-size: 0.95rem; margin-bottom: 1rem; font-weight: 400; line-height: 1.6; text-align: left; }
+        .hero .hero-small-text { font-size: 0.85rem; color: #b0b0b0; margin-bottom: 2rem; text-align: left; }
+        
+        .hero-btn-wrapper { margin-bottom: 2rem; text-align: left; }
+        
+        .hero-list { 
+            margin-top: 1.5rem; 
+            text-align: left;
+            padding-left: 0;
+        }
+        .hero-list li { 
+            color: #ffffff; 
+            font-size: 0.85rem; 
+            margin-bottom: 0.6rem; 
+            display: flex; 
+            align-items: center; 
+            justify-content: flex-start;
+            gap: 10px; 
+        }
+        .hero-list li::before { content: '✓'; color: var(--brand-orange); font-weight: bold; }
+
+        /* =========================================
+           5. APPROACH SECTION
+           ========================================= */
+        .approach-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        .approach-item { text-align: center; }
+        .approach-icon { font-size: 2rem; color: var(--brand-orange); margin-bottom: 1rem; display: block; }
+        .approach-item h4 { font-size: 1rem; }
+        .approach-item p { font-size: 0.85rem; color: var(--text-gray); }
+
+        /* =========================================
+           6. SIGNATURE SOLUTIONS (CARDS)
+           ========================================= */
+        .signature-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-top: 3rem;
+        }
+        .sig-card {
+            background: #ffffff;
+            border: 1px solid #f0f0f0;
+            padding: 2.5rem 2rem;
+            border-radius: var(--radius-md);
+            box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+            text-align: left;
+        }
+        .sig-card .icon { color: var(--brand-orange); font-size: 1.2rem; margin-bottom: 1rem; display: block; }
+        .sig-card .card-badge { font-size: 0.65rem; color: var(--brand-orange); font-weight: 700; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 0.5rem; display: block; }
+        .sig-card h3 { font-size: 1.1rem; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 1rem; }
+        .sig-card p { font-size: 0.85rem; color: var(--text-gray); margin-bottom: 2rem; line-height: 1.6; }
+        .sig-card a { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); display: flex; align-items: center; justify-content: center; gap: 5px; padding: 10px; border: 1px solid #eee; border-radius: 4px; }
+        .sig-card a:hover { background: #f9f9f9; }
+
+        /* =========================================
+           7. DESIGNED FOR SECTION
+           ========================================= */
+        .designed-for-section {
+            padding: 3rem 0;
+            border-top: 1px solid #f0f0f0;
+            border-bottom: 1px solid #f0f0f0;
+            background-color: #ffffff;
+        }
+        .df-heading {
+            text-align: center;
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: #222222;
+            margin-bottom: 1.8rem;
+        }
+        .df-cards-wrapper {
+            display: flex;
+            justify-content: space-between;
+            gap: 1.2rem;
+            flex-wrap: wrap;
+        }
+        .df-card {
+            flex: 1;
+            min-width: 240px;
+            background-color: #F8F8F8;
+            border: 1px solid #EBEBEB;
+            border-radius: 6px;
+            padding: 1.2rem 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 1.2rem;
+            transition: transform 0.2s ease;
+        }
+        .df-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+        }
+        .df-icon {
+            flex-shrink: 0;
+            width: 32px;
+            height: 32px;
+            color: var(--brand-orange);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .df-icon svg { width: 100%; height: 100%; }
+        .df-text { font-size: 0.85rem; font-weight: 700; color: #333333; line-height: 1.4; }
+
+        /* =========================================
+           8. DARK CTA BOX
+           ========================================= */
+        .dark-cta-wrapper { padding: 5rem 0; }
+        .dark-cta {
+            background: var(--brand-dark);
+            border-radius: var(--radius-md);
+            padding: 4rem;
+            text-align: center;
+            color: #ffffff;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .dark-cta h2 { color: #ffffff; margin-bottom: 1rem; }
+        .dark-cta p { color: #cccccc; font-size: 0.95rem; margin-bottom: 2rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+        /* =========================================
+           9. STATS STRIP
+           ========================================= */
+        .stats-strip { background: var(--brand-light-bg); padding: 3rem 0; text-align: center; }
+        .stats-strip h4 { font-size: 0.9rem; letter-spacing: 1px; margin-bottom: 2rem; text-transform: uppercase; }
+        .stats-grid { display: flex; justify-content: space-around; }
+        .stats-grid span { font-size: 0.9rem; font-weight: 500; color: var(--text-dark); }
+
+        /* =========================================
+           10. A CLOSER LOOK (IMAGE + TEXT)
+           ========================================= */
+        .closer-look-row {
+            display: flex;
+            align-items: center;
+            gap: 5rem;
+            margin-bottom: 6rem;
+        }
+        .closer-look-row:nth-child(even) { flex-direction: row-reverse; }
+        .cl-content { flex: 1; }
+        .cl-image { flex: 1; position: relative; }
+        .cl-image img { border-radius: var(--radius-md); width: 100%; object-fit: cover; aspect-ratio: 4/3; }
+        
+        .badge {
+            background: var(--badge-bg);
+            color: var(--brand-orange);
+            font-size: 0.75rem;
+            font-weight: 600;
+            padding: 4px 12px;
+            border-radius: 50px;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            margin-bottom: 1rem;
+        }
+        .cl-content p { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 1.5rem; }
+        .cl-content .highlight-text { color: var(--brand-orange); font-size: 0.85rem; font-weight: 600; }
+        
+        .img-tag {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            background: #111;
+            color: #fff;
+            font-size: 0.8rem;
+            font-weight: 600;
+            padding: 8px 16px;
+            border-radius: 4px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .img-tag span { color: var(--brand-orange); }
+
+        /* =========================================
+           11. TRUST CARDS
+           ========================================= */
+        .trust-cards {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+        .trust-card { background: #ffffff; padding: 2.5rem; border-radius: var(--radius-md); box-shadow: 0 4px 20px rgba(0,0,0,0.03); }
+        .trust-card .icon { color: var(--brand-orange); font-size: 1.5rem; margin-bottom: 1rem; }
+        .trust-card h4 { font-size: 1rem; text-transform: uppercase; margin-bottom: 1rem; }
+        .trust-card p { font-size: 0.85rem; color: var(--text-gray); }
+
+        /* =========================================
+           12. HOW IT WORKS SECTION (EXACT MATCH)
+           ========================================= */
+        .how-it-works-wrapper {
+            background-color: #FAFAFA;
+            padding: 6rem 0;
+        }
+        .hiw-title {
+            font-size: 2.2rem;
+            color: var(--text-dark, #222);
+            margin-bottom: 4rem;
+        }
+        .process-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            text-align: center;
+        }
+        .process-step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .step-num {
+            font-size: 3.8rem;
+            font-weight: 700;
+            color: #fae4d8; 
+            line-height: 1;
+            margin-bottom: 1.2rem;
+        }
+        .process-step h4 {
+            font-size: 1.05rem;
+            font-weight: 700;
+            color: var(--text-dark, #222);
+            margin-bottom: 0.8rem;
+        }
+        .process-step p {
+            font-size: 0.85rem;
+            color: var(--text-gray, #666);
+            line-height: 1.6;
+            max-width: 260px;
+            margin: 0 auto;
+        }
+        .process-footer {
+            text-align: center;
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: var(--text-dark, #222);
+            margin-top: 4.5rem;
+        }
+
+        /* =========================================
+           13. TESTIMONIAL & FINAL CTA
+           ========================================= */
+        .testimonial { background: var(--brand-dark); padding: 5rem 0; text-align: center; color: #ffffff; }
+        .quote-icon { color: var(--brand-orange); font-size: 2rem; font-family: serif; line-height: 1; margin-bottom: 1rem; }
+        .testimonial h2 { font-size: 1.5rem; font-weight: 500; max-width: 800px; margin: 0 auto 2rem; line-height: 1.5; color: #fff; }
+        .author-name { color: var(--brand-orange); font-weight: 700; font-size: 0.9rem; display: block; }
+        .author-title { color: var(--text-light-gray); font-size: 0.8rem; }
+
+        .final-cta-container { padding: 4rem 0; }
+        .final-cta-box {
+            background: var(--brand-orange);
+            border-radius: var(--radius-lg);
+            padding: 4rem;
+            text-align: center;
+            color: #ffffff;
+        }
+        .final-cta-box h2 { color: #ffffff; margin-bottom: 1rem; }
+        .final-cta-box p { font-size: 0.95rem; margin-bottom: 2rem; opacity: 0.9; }
+        .final-cta-list { display: flex; justify-content: center; gap: 2rem; margin-top: 2rem; }
+        .final-cta-list li { font-size: 0.8rem; display: flex; align-items: center; gap: 8px; }
+        .final-cta-list li::before { content: '✓'; font-weight: bold; background: rgba(255,255,255,0.2); border-radius: 50%; width: 18px; height: 18px; display: inline-flex; align-items: center; justify-content: center; font-size: 10px; }
+
+        /* =========================================
+           14. FOOTER & CHAT WIDGET
+           ========================================= */
+        .footer { padding: 5rem 0 2rem; background: var(--brand-light-bg); text-align: center; position: relative; }
+        .footer h3 { font-size: 1.2rem; margin-bottom: 1rem; }
+        .footer p { font-size: 0.85rem; color: var(--text-gray); max-width: 800px; margin: 0 auto 2rem; }
+        .footer-bottom { display: flex; justify-content: space-between; align-items: center; margin-top: 4rem; padding-top: 2rem; border-top: 1px solid #eaeaea; }
+        .footer-logo { font-weight: 700; color: #000; }
+        .footer-logo span { color: var(--brand-orange); font-weight: 400; }
+        .copyright { font-size: 0.75rem; color: var(--text-light-gray); }
+
+        /* Chat Widget with Close Button */
+        .chat-widget {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 280px;
+            background: #fff;
+            border-radius: var(--radius-md);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+            z-index: 1000;
+            padding: 15px;
+            font-size: 0.8rem;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+        .close-chat-btn {
+            position: absolute;
+            top: 10px;
+            right: 12px;
+            background: none;
+            border: none;
+            font-size: 1.2rem;
+            color: #999;
+            cursor: pointer;
+            line-height: 1;
+            transition: color 0.2s ease;
+        }
+        .close-chat-btn:hover {
+            color: #222;
+        }
+        .chat-header { display: flex; align-items: center; gap: 10px; padding-right: 20px; }
+        .chat-header img { width: 30px; height: 30px; border-radius: 50%; object-fit: cover; }
+        .chat-text { color: var(--text-gray); line-height: 1.4; }
+        .chat-input { border: 1px solid #eee; border-radius: 20px; padding: 8px 15px; color: #aaa; background: #f9f9f9; }
+
+        /* =========================================
+           15. GLOBAL MOBILE RESPONSIVE FIXES
+           ========================================= */
+        @media (max-width: 992px) {
+            .closer-look-row, 
+            .closer-look-row:nth-child(even) {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            .cl-image { width: 100%; }
+            .approach-grid, 
+            .signature-cards, 
+            .trust-cards {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .process-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 3rem 1.5rem;
+            }
+            .df-cards-wrapper {
+                grid-template-columns: 1fr 1fr;
+            }
+            .stats-grid {
+                flex-wrap: wrap;
+                gap: 2rem;
+            }
+            .stats-grid span { flex: 1 1 40%; }
+        }
+
+        @media (max-width: 768px) {
+            .nav-links { display: none; }
+            .approach-grid, 
+            .signature-cards, 
+            .trust-cards,
+            .process-grid {
+                grid-template-columns: 1fr;
+            }
+            .df-cards-wrapper { grid-template-columns: 1fr; }
+            .stats-grid span { flex: 1 1 100%; }
+            .hero h1 { font-size: 2.5rem; }
+            .hero { min-height: auto; padding: 6rem 0 4rem; }
+            .final-cta-list { flex-direction: column; gap: 1rem; align-items: center; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="navbar" id="navbar">
+        <div class="container nav-inner">
+            <a href="#" class="logo">Modern<span>Office</span></a>
+            <nav class="nav-links">
+                <a href="#strategy">Strategy</a>
+                <a href="#solutions">Solutions</a>
+                <a href="#why-us">Why Us</a>
+                <a href="#how-it-works">How It Works</a>
+                <a href="#shop">Shop</a>
+            </nav>
+            <a href="#quote" class="btn btn-orange">Get a Quote in 24 Hours</a>
+        </div>
+    </header>
+
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content text-left">
+                <span class="subtitle">25+ YEARS IN WORKPLACE OPERATIONS & STRATEGY</span>
+                <h1>Furnish Your<br>Coworking Space<br>Faster — With<br>Solutions <span class="text-orange">That Drive Revenue</span></h1>
+                <p>We audit your current setup, identify revenue opportunities, and source people-focused solutions that streamline expenses and elevate the member experience.</p>
+                <p class="hero-small-text">Built specifically for coworking operators — not corporate offices or generic furniture buyers.</p>
+                
+                <div class="hero-btn-wrapper">
+                    <a href="#quote" class="btn btn-orange">Get a Quote in 24 Hours</a>
+                </div>
+                
+                <ul class="hero-list">
+                    <li>Offset investments with revenue strategy</li>
+                    <li>Streamline facilities & expenses</li>
+                    <li>People-focused workspace design</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <section id="strategy" class="section text-center">
+        <div class="container">
+            <span class="subtitle">OUR APPROACH</span>
+            <h2>Start With Strategy, Not Just Products.</h2>
+            <p style="color: var(--text-gray); font-size: 0.9rem; max-width: 700px; margin: 0 auto 1.5rem;">We help you identify the highest-impact additions to your space — based on member demand, revenue potential, and layout efficiency. Every recommendation comes with a clear path to ROI.</p>
+            <p style="font-size: 0.85rem; font-weight: 600;">We help you prioritize what will actually move the needle — not just fill the space.</p>
+            
+            <div class="approach-grid">
+                <div class="approach-item">
+                    <span class="approach-icon">♡</span>
+                    <h4>Nursing Pods</h4>
+                    <p>Retention & Inclusivity — meet enterprise HR expectations</p>
+                </div>
+                <div class="approach-item">
+                    <span class="approach-icon">🎙️</span>
+                    <h4>Podcast Studios</h4>
+                    <p>Monetization — turn underused rooms into bookable revenue</p>
+                </div>
+                <div class="approach-item">
+                    <span class="approach-icon">⊞</span>
+                    <h4>Multi-Use Solutions</h4>
+                    <p>Utilization — maximize every square foot without adding space</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section bg-light text-center">
+        <div class="container">
+            <span class="subtitle">SIGNATURE SOLUTIONS</span>
+            <h2>High-Impact Additions That Drive Revenue</h2>
+            <p style="color: var(--text-gray); font-size: 0.95rem;">Not all workspace solutions drive revenue. These do.</p>
+            
+            <div class="signature-cards">
+                <div class="sig-card">
+                    <span class="icon">👤</span>
+                    <span class="card-badge">RETENTION & INCLUSIVITY</span>
+                    <h3>NURSING & WELLNESS PODS</h3>
+                    <p>Private, compliant spaces for working parents and wellness needs. Meet enterprise client expectations and improve member retention.</p>
+                    <a href="#">Explore Pods <span>→</span></a>
+                </div>
+                <div class="sig-card">
+                    <span class="icon">▶</span>
+                    <span class="card-badge">MONETIZATION</span>
+                    <h3>PODCAST & CONTENT STUDIOS</h3>
+                    <p>Bookable, revenue-generating content spaces your members will love. Turn underutilized space into a premium, income-producing amenity.</p>
+                    <a href="#">Explore Studios <span>→</span></a>
+                </div>
+                <div class="sig-card">
+                    <span class="icon">⊟</span>
+                    <span class="card-badge">UTILIZATION</span>
+                    <h3>MULTI-FUNCTIONAL WORKSPACE SOLUTIONS</h3>
+                    <p>One room becomes training, meetings, or events — without adding footage. Maximize every square foot and differentiate your space from competitors.</p>
+                    <a href="#">Explore Solutions <span>→</span></a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="designed-for-section">
+        <div class="container">
+            <h3 class="df-heading">Designed For</h3>
+            
+            <div class="df-cards-wrapper">
+                <div class="df-card">
+                    <div class="df-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M3 21h18"></path>
+                            <path d="M9 8h1"></path>
+                            <path d="M9 12h1"></path>
+                            <path d="M9 16h1"></path>
+                            <path d="M14 8h1"></path>
+                            <path d="M14 12h1"></path>
+                            <path d="M14 16h1"></path>
+                            <path d="M5 21V5a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v16"></path>
+                        </svg>
+                    </div>
+                    <div class="df-text">Opening a new coworking location</div>
+                </div>
+
+                <div class="df-card">
+                    <div class="df-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <polyline points="22 7 13.5 15.5 8.5 10.5 2 17"></polyline>
+                            <polyline points="16 7 22 7 22 13"></polyline>
+                        </svg>
+                    </div>
+                    <div class="df-text">Upgrading underutilized space</div>
+                </div>
+
+                <div class="df-card">
+                    <div class="df-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3Z"></path>
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2"></path>
+                            <line x1="12" y1="19" x2="12" y2="22"></line>
+                        </svg>
+                    </div>
+                    <div class="df-text">Adding premium, bookable rooms</div>
+                </div>
+
+                <div class="df-card">
+                    <div class="df-icon">
+                        <svg viewBox="0 0 24 24" fill="currentColor">
+                            <path d="M16 11c1.66 0 2.99-1.34 2.99-3S17.66 5 16 5c-1.66 0-3 1.34-3 3s1.34 3 3 3zm-8 0c1.66 0 2.99-1.34 2.99-3S9.66 5 8 5C6.34 5 5 6.34 5 8s1.34 3 3 3zm0 2c-2.33 0-7 1.17-7 3.5V19h14v-2.5c0-2.33-4.67-3.5-7-3.5zm8 0c-.29 0-.62.02-.97.05 1.16.84 1.97 1.97 1.97 3.45V19h6v-2.5c0-2.33-4.67-3.5-7-3.5z"></path>
+                        </svg>
+                    </div>
+                    <div class="df-text">Attracting enterprise clients</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="dark-cta-wrapper">
+        <div class="container">
+            <div class="dark-cta">
+                <h2>Have a Space in Mind?</h2>
+                <p>Get clear recommendations and pricing within 24 hours.<br>No endless catalogs. No vendor overwhelm. Just the right solutions for your space.</p>
+                <a href="#quote" class="btn btn-orange">Get a Quote in 24 Hours</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="stats-strip">
+        <div class="container">
+            <h4>SUPPORTING COWORKING OPERATORS NATIONWIDE</h4>
+            <div class="stats-grid">
+                <span>25+ Years in Workplace Operations</span>
+                <span>200+ Spaces Furnished</span>
+                <span>50+ Cities</span>
+                <span>4.9★ Operator Rating</span>
+            </div>
+        </div>
+    </section>
+
+    <section id="solutions" class="section">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 4rem;">A Closer Look</h2>
+            
+            <div class="closer-look-row">
+                <div class="cl-content">
+                    <div class="badge">🧡 Retain Members & Win Enterprise Clients</div>
+                    <h2>Nursing & Wellness Pods</h2>
+                    <p>A dedicated, compliant private space that signals inclusivity — and increasingly, a requirement for enterprise leases.</p>
+                    <p class="highlight-text">Increasingly requested by enterprise clients and HR teams.</p>
+                    <p style="font-size: 0.8rem; color: var(--text-gray); margin-bottom: 1.5rem;">Retention: Meet the expectations of working parents and enterprise HR teams.</p>
+                    <a href="#quote" class="btn btn-orange">Get a Quote in 24 Hours</a>
+                </div>
+                <div class="cl-image">
+                    <img src="https://images.unsplash.com/photo-1572025442646-866d16c84a54?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Nursing Pods in office">
+                    <div class="img-tag"><span>#1</span> requested amenity</div>
+                </div>
+            </div>
+
+            <div class="closer-look-row">
+                <div class="cl-content">
+                    <div class="badge">⊟ More Utility, Same Footprint</div>
+                    <h2>3-in-1 Conference Table</h2>
+                    <p>Client presentations, whiteboard brainstorms, and Friday ping pong — one table that drives utilization across three use cases.</p>
+                    <p class="highlight-text">Ideal for high-turnover coworking environments.</p>
+                    <p style="font-size: 0.8rem; color: var(--text-gray); margin-bottom: 1.5rem;">Utilization: Maximize every square foot without adding space.</p>
+                    <a href="#quote" class="btn btn-orange">Get a Quote in 24 Hours →</a>
+                </div>
+                <div class="cl-image">
+                    <img src="https://images.unsplash.com/photo-1611162617474-5b21e879e113?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Ping Pong Table in office">
+                    <div class="img-tag">Ping Pong Mode <span>▶</span></div>
+                </div>
+            </div>
+
+            <div class="closer-look-row">
+                <div class="cl-content">
+                    <div class="badge">🎙️ Monetize Underused Space</div>
+                    <h2>Podcast & Content Studios</h2>
+                    <p>Create bookable, revenue-generating content rooms. Operators charge $25-$75/hour — most see full ROI within 6-12 months.</p>
+                    <p class="highlight-text">Used by teams to create bookable, revenue-generating content rooms.</p>
+                    <p style="font-size: 0.8rem; color: var(--text-gray); margin-bottom: 1.5rem;">Revenue: Turn dead space into a premium, income-producing amenity.</p>
+                    <a href="#quote" class="btn btn-orange">Get a Quote in 24 Hours</a>
+                </div>
+                <div class="cl-image">
+                    <img src="https://images.unsplash.com/photo-1590602847861-f357a9332bbc?ixlib=rb-4.0.3&auto=format&fit=crop&w=800&q=80" alt="Podcast Studio">
+                    <div class="img-tag"><span style="color: #fbd38d;">$15K+/yr</span> booking revenue potential</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="why-us" class="section bg-light">
+        <div class="container text-center">
+            <span class="subtitle">WHY OPERATORS TRUST US</span>
+            <h2>We Don't Just Source Products — We Help You Choose What Performs</h2>
+            <p style="font-size: 0.9rem; color: var(--text-gray); margin-bottom: 2rem;">With 25+ years in workplace operations, every recommendation is rooted in what actually drives revenue, reduces expenses, and creates spaces people love.</p>
+            
+            <div class="trust-cards text-left" style="text-align: left;">
+                <div class="trust-card">
+                    <div class="icon">📊</div>
+                    <h4>REVENUE STRATEGY, NOT JUST SOURCING</h4>
+                    <p>We audit your space, identify underperforming areas, and recommend high-impact additions with clear revenue strategies to offset every investment.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="icon">🔨</div>
+                    <h4>STREAMLINED EXPENSES & FACILITIES</h4>
+                    <p>One sourcing partner replaces the chaos of multiple vendors. We reduce overhead, simplify procurement, and keep your buildout on time and on budget.</p>
+                </div>
+                <div class="trust-card">
+                    <div class="icon">✨</div>
+                    <h4>PEOPLE-FOCUSED WORKSPACE DESIGN</h4>
+                    <p>Every recommendation starts with your members. We source solutions that create the kind of experiences people talk about — and come back for.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="how-it-works" class="how-it-works-wrapper">
+        <div class="container text-center">
+            <span class="subtitle">HOW IT WORKS</span>
+            <h2 class="hiw-title">From First Call to Fully Furnished</h2>
+            
+            <div class="process-grid">
+                <div class="process-step">
+                    <div class="step-num">01</div>
+                    <h4>Space & Operations Audit</h4>
+                    <p>We assess your current setup, identify what's underperforming, and uncover revenue opportunities.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-num">02</div>
+                    <h4>Strategy & Recommendations</h4>
+                    <p>You get a clear plan — what to add, what to change, and how each investment pays for itself.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-num">03</div>
+                    <h4>Quote Within 24 Hours</h4>
+                    <p>Transparent, all-in pricing so you can move forward with confidence.</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-num">04</div>
+                    <h4>We Handle the Rest</h4>
+                    <p>Sourcing, delivery, and install — coordinated by one team. No vendor juggling.</p>
+                </div>
+            </div>
+            
+            <div class="process-footer">No vendor juggling. No guesswork.</div>
+        </div>
+    </section>
+
+    <section class="testimonial">
+        <div class="container">
+            <div class="quote-icon">"</div>
+            <h2>They didn't just source solutions for our space — they helped us create the kind of environment that turns a tour into a signed membership. Our podcast studio alone generates $1,200/month in bookings.</h2>
+            <span class="author-name">Sarah Chen</span>
+            <span class="author-title">Founder, The Collective — Austin, TX</span>
+        </div>
+    </section>
+
+    <section class="final-cta-container">
+        <div class="container">
+            <div class="final-cta-box">
+                <h2>Open Faster. Earn More. Stress Less.</h2>
+                <p>Let us audit your space, build a revenue-backed strategy, and handle everything from sourcing to install.</p>
+                <a href="#quote" class="btn btn-white">Talk to a Specialist</a>
+                
+                <ul class="final-cta-list">
+                    <li>Revenue strategies that offset investments</li>
+                    <li>Streamlined facilities & expenses</li>
+                    <li>People-focused workspace design</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer class="footer">
+        <div class="container">
+            <h3>Coworking Workspace Solutions & Strategy</h3>
+            <p>We're an operations-driven workspace strategy and sourcing partner with 25+ years in workplace operations and design. We audit your coworking space, recommend high-impact additions — from office pods and acoustic solutions to podcast studios and multi-functional workspace solutions — and deliver revenue strategies that offset every investment.</p>
+            <a href="#quote" class="btn btn-orange">Get a Quote in 24 Hours</a>
+            
+            <div class="footer-bottom">
+                <a href="#" class="footer-logo">Modern<span>Office</span></a>
+                <div class="copyright">© 2026 Modern Office. Operations-Driven Strategy for Coworking & Flex Spaces.</div>
+            </div>
+        </div>
+    </footer>
+
+    <div class="chat-widget" id="supportChatWidget">
+        <button class="close-chat-btn" id="closeChatBtn" aria-label="Close Chat">&times;</button>
+        <div class="chat-header">
+            <img src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80" alt="Dana">
+            <div>
+                <strong style="font-size: 0.8rem; display:block; color:#222;">Dana, Customer Support</strong>
+            </div>
+        </div>
+        <div class="chat-text">Hold on! A little discount never hurts. Get 10% off your purchase with a code MOD10!</div>
+        <div class="chat-input">Reply to Dana...</div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const targetId = this.getAttribute('href');
+                    if (targetId === '#') return;
+                    
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        const headerOffset = 80; // Accounts for the sticky header
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+  
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: "smooth"
+                        });
+                    }
+                });
+            });
+
+            // Chat Widget Close Functionality
+            const chatWidget = document.getElementById('supportChatWidget');
+            const closeChatBtn = document.getElementById('closeChatBtn');
+
+            if (closeChatBtn && chatWidget) {
+                closeChatBtn.addEventListener('click', () => {
+                    chatWidget.style.opacity = '0';
+                    chatWidget.style.visibility = 'hidden';
+                    setTimeout(() => {
+                        chatWidget.style.display = 'none';
+                    }, 300); // Wait for transition to finish
+                });
+            }
+        });
+    </script>
+</body>
+</html>
